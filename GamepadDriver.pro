@@ -4,10 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT += core gui serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+CONFIG += c++11
 TARGET = GamepadDriver
 TEMPLATE = app
 
@@ -25,10 +26,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        MainWindow.cpp
+        MainWindow.cpp \
+    GamepadState.cpp \
+    Communicator.cpp
 
 HEADERS += \
-        MainWindow.h
+        MainWindow.h \
+    Communicator.h \
+    GamepadState.h \
+    Constants.h
 
 FORMS += \
         MainWindow.ui
