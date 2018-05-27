@@ -28,13 +28,15 @@ SOURCES += \
         main.cpp \
         MainWindow.cpp \
     GamepadState.cpp \
-    Communicator.cpp
+    Communicator.cpp \
+    EventHandler.cpp
 
 HEADERS += \
         MainWindow.h \
     Communicator.h \
     GamepadState.h \
-    Constants.h
+    Constants.h \
+    EventHandler.h
 
 FORMS += \
         MainWindow.ui

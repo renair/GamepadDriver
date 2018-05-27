@@ -1,5 +1,7 @@
 #include "Communicator.h"
 #include <QSerialPortInfo>
+#include <iostream>
+#include <bitset>
 
 Communicator::Communicator():
     _serialPort(NULL)
@@ -12,13 +14,16 @@ Communicator::~Communicator()
 
 void Communicator::setupPort()
 {
-    if(_serialPort && !_serialPort->isOpen())
+    if(!_serialPort || _serialPort->isOpen())
     {
         return;
     }
     _serialPort->setBaudRate(QSerialPort::Baud9600);
     _serialPort->setStopBits(QSerialPort::OneStop);
     _serialPort->setParity(QSerialPort::NoParity);
+    _serialPort->setFlowControl(QSerialPort::NoFlowControl);
+    _serialPort->setDataBits(QSerialPort::Data8);
+    connect(_serialPort, SIGNAL(readyRead()), this, SLOT(dataArrived()));
 }
 
 bool Communicator::testDevice()
@@ -29,11 +34,21 @@ bool Communicator::testDevice()
 void Communicator::dataArrived()
 {
     Q_ASSERT(_serialPort != NULL);
-    if(_serialPort->bytesAvailable() >= 2)
+    while(_serialPort->bytesAvailable() >= 2)
     {
         int16_t val = 0;
+        int16_t res = 0;
         _serialPort->read((char*)&val, sizeof(val));
-        _gamepadState.setState(val);
+        std::bitset<16> start(val);
+        std::cout << start << std::endl;
+        for(unsigned int i = 0; i < sizeof(val)*8;++i)
+        {
+            res = res << 1 | (1 & val);
+            val >>= 1;
+        }
+        std::bitset<16> swapped(res);
+        std::cout << swapped << std::endl;
+        _gamepadState.setState(res);
         emit newDeviceState(_gamepadState);
     }
 }
@@ -58,6 +73,10 @@ bool Communicator::isDeviceEnabled()
 
 void Communicator::enableDevice()
 {
+    if(_serialPort && _serialPort->isOpen() && _serialPort->portName() == _portName)
+    {
+        return;
+    }
     if(_serialPort)
     {
         _serialPort->close();
