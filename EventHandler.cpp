@@ -12,5 +12,5 @@ EventHandler::~EventHandler()
 
 void EventHandler::joystickStateChanged(GamepadState state)
 {
-    cout << "Joystick:" << (int)state.getLeftJoystickDirection() << endl;
+    // write handling here
 }

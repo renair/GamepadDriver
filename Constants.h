@@ -6,15 +6,15 @@
 typedef unsigned char byte;
 
 // Joystick directions
-const byte CENTER = 0;
-const byte UP = 1;
-const byte UP_RIGHT = 2;
-const byte RIGHT = 3;
-const byte RIGHT_DOWN = 4;
-const byte DOWN = 5;
-const byte DOWN_LEFT = 6;
-const byte LEFT = 7;
-const byte LEFT_UP = 8;
+const byte CENTER = 0b0000;
+const byte UP = 0b1000;
+const byte UP_RIGHT = 0b1100;
+const byte RIGHT = 0b0100;
+const byte RIGHT_DOWN = 0b0110;
+const byte DOWN = 0b0010;
+const byte DOWN_LEFT = 0b0011;
+const byte LEFT = 0b0001;
+const byte LEFT_UP = 0b1001;
 
 // Controller buttons
 const int16_t LTRIGGER = 1;

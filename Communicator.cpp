@@ -34,21 +34,11 @@ bool Communicator::testDevice()
 void Communicator::dataArrived()
 {
     Q_ASSERT(_serialPort != NULL);
-    while(_serialPort->bytesAvailable() >= 2)
+    while(_serialPort->bytesAvailable() >= 4)
     {
-        int16_t val = 0;
-        int16_t res = 0;
+        int32_t val = 0;
         _serialPort->read((char*)&val, sizeof(val));
-        std::bitset<16> start(val);
-        std::cout << start << std::endl;
-        for(unsigned int i = 0; i < sizeof(val)*8;++i)
-        {
-            res = res << 1 | (1 & val);
-            val >>= 1;
-        }
-        std::bitset<16> swapped(res);
-        std::cout << swapped << std::endl;
-        _gamepadState.setState(res);
+        _gamepadState.setState(val);
         emit newDeviceState(_gamepadState);
     }
 }
