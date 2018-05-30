@@ -3,12 +3,14 @@
 
 #include <QObject>
 #include "GamepadState.h"
+#include "reactions/MouseJoystickReaction.h"
 
 class EventHandler : public QObject
 {
 Q_OBJECT
 private:
-
+    JoystickReaction* _leftJoystick;
+    JoystickReaction* _rightJoystick;
 public:
     EventHandler();
     EventHandler(const EventHandler&) = delete;

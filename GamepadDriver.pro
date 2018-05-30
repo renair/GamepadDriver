@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT += core gui serialport
+LIBS += -lKernel32
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,18 +26,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
-        MainWindow.cpp \
     GamepadState.cpp \
     Communicator.cpp \
-    EventHandler.cpp
+    EventHandler.cpp \
+    MainWindow.cpp \
+    reactions/JoystickReaction.cpp \
+    main.cpp \
+    reactions/MouseJoystickReaction.cpp
 
 HEADERS += \
-        MainWindow.h \
     Communicator.h \
     GamepadState.h \
     Constants.h \
-    EventHandler.h
+    EventHandler.h \
+    reactions/JoystickReaction.h \
+    MainWindow.h \
+    reactions/MouseJoystickReaction.h
 
 FORMS += \
         MainWindow.ui

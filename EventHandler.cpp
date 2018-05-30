@@ -4,8 +4,12 @@
 
 using namespace std;
 
-EventHandler::EventHandler()
-{}
+EventHandler::EventHandler():
+    _leftJoystick(NULL),
+    _rightJoystick(NULL)
+{
+    _rightJoystick = new MouseJoystickReaction;
+}
 
 EventHandler::~EventHandler()
 {}
@@ -13,4 +17,5 @@ EventHandler::~EventHandler()
 void EventHandler::joystickStateChanged(GamepadState state)
 {
     // write handling here
+    _rightJoystick->setDirection(state.getRightJoystickDirection());
 }
