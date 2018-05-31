@@ -74,7 +74,11 @@ void Communicator::enableDevice()
     }
     _serialPort = new QSerialPort(_portName);
     setupPort();
-    _serialPort->open(QSerialPort::ReadWrite);
+    bool isOpened = _serialPort->open(QSerialPort::ReadWrite);
+    if(!isOpened)
+    {
+        std::cout << "Port not opened!" << std::endl;
+    }
 }
 
 void Communicator::disableDevice()

@@ -6,7 +6,7 @@ const int MouseJoystickReaction::_step = 5;
 
 MouseJoystickReaction::MouseJoystickReaction():
     _isActual(false),
-    _pos{200, 200}
+    _pos{0, 0}
 {
     memset(&_input, 0,  sizeof(INPUT));
     _input.type = INPUT_MOUSE;
