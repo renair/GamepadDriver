@@ -26,6 +26,7 @@ void JoystickReaction::setDirection(byte direction)
     else
     {
         _timer.stop();
+        react(CENTER);
     }
 }
 

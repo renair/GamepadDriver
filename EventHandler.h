@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include "GamepadState.h"
-#include "reactions/MouseJoystickReaction.h"
+#include "reactions/JoystickReaction.h"
 
 class EventHandler : public QObject
 {
