@@ -33,7 +33,8 @@ SOURCES += \
     reactions/JoystickReaction.cpp \
     main.cpp \
     reactions/MouseJoystickReaction.cpp \
-    reactions/KeyboardJoystickReaction.cpp
+    reactions/KeyboardJoystickReaction.cpp \
+    reactions/KeyboardKey.cpp
 
 HEADERS += \
     Communicator.h \
@@ -43,7 +44,8 @@ HEADERS += \
     reactions/JoystickReaction.h \
     MainWindow.h \
     reactions/MouseJoystickReaction.h \
-    reactions/KeyboardJoystickReaction.h
+    reactions/KeyboardJoystickReaction.h \
+    reactions/KeyboardKey.h
 
 FORMS += \
         MainWindow.ui
