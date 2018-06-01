@@ -2,7 +2,7 @@
 #include <QApplication>
 #include "Communicator.h"
 #include "EventHandler.h"
-#include "testbuttons.h"
+#include "CustomConfiguration.h"
 
 using namespace std;
 
@@ -21,7 +21,9 @@ int main(int argc, char *argv[])
     comm.enableDevice();
     //connect device data do handler
     QObject::connect(&comm, SIGNAL(newDeviceState(GamepadState)),&handler, SLOT(joystickStateChanged(GamepadState)));
-    TestButtons *tb = new TestButtons();
-    tb->show();
+
+    CustomConfiguration customConfiguration;
+    customConfiguration.show();
+
     return a.exec();
 }

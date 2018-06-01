@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CustomConfiguration</class>
+ <widget class="QWidget" name="CustomConfiguration">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>422</width>
+    <height>349</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QTableWidget" name="buttonTable">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>10</y>
+     <width>311</width>
+     <height>331</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="locale">
+    <locale language="English" country="UnitedStates"/>
+   </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::NoSelection</enum>
+   </property>
+   <property name="selectionBehavior">
+    <enum>QAbstractItemView::SelectRows</enum>
+   </property>
+   <row>
+    <property name="text">
+     <string>LTRIGGER</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>RTRIGGER</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>XBUTTON</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>ABUTTON</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>BBUTTON</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>YBUTTON</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>LFUNBUTTON</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>RFUNBUTTON</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>LJOYBUTTON</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>RJOYBUTTON</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>Assigned Button</string>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="1" column="0">
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="2" column="0">
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="3" column="0">
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="4" column="0">
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="5" column="0">
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="6" column="0">
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="7" column="0">
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="8" column="0">
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsEnabled</set>
+    </property>
+   </item>
+   <item row="9" column="0">
+    <property name="flags">
+     <set>ItemIsSelectable|ItemIsEnabled</set>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="testLabel">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>160</y>
+     <width>81</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

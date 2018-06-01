@@ -33,7 +33,8 @@ SOURCES += \
     reactions/JoystickReaction.cpp \
     main.cpp \
     reactions/MouseJoystickReaction.cpp \
-    reactions/KeyboardJoystickReaction.cpp
+    reactions/KeyboardJoystickReaction.cpp \
+    CustomConfiguration.cpp
 
 HEADERS += \
     Communicator.h \
@@ -43,10 +44,12 @@ HEADERS += \
     reactions/JoystickReaction.h \
     MainWindow.h \
     reactions/MouseJoystickReaction.h \
-    reactions/KeyboardJoystickReaction.h
+    reactions/KeyboardJoystickReaction.h \
+    CustomConfiguration.h
 
 FORMS += \
-        MainWindow.ui
+        MainWindow.ui \
+    CustomConfiguration.ui
 
 DISTFILES += \
     .gitignore \
