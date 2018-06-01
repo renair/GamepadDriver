@@ -28,4 +28,8 @@ const int16_t RFUNBUTTON = 1 << 7;
 const int16_t LJOYBUTTON = 1 << 8;
 const int16_t RJOYBUTTON = 1 << 9;
 
+// Joystick preferences
+const byte JOYSTICK_MOUSE = 0;
+const byte JOYSTICK_KEYBOARD = 1;
+
 #endif // CONSTANTS_H

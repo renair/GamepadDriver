@@ -14,24 +14,26 @@ class CustomConfiguration : public QWidget
     Q_OBJECT
 
 public:
-    explicit CustomConfiguration(QWidget *parent = 0);
+    explicit CustomConfiguration(QWidget* parent = NULL);
     ~CustomConfiguration();
 
 private:
-    Ui::CustomConfiguration *ui;
-    int buttonListening;
-    QTableWidgetItem *currentItem;
-    void keyPressEvent(QKeyEvent *ev);
-    QString prevLabel;
+    Ui::CustomConfiguration* ui;
+    QTableWidgetItem* _currentItem;
+    QString _prevLabel;
+    int _buttonListening;
+    void keyPressEvent(QKeyEvent* ev);
 private slots:
     void activateButtonListening(int row);
-    void activateLeftJoyButtonListening(int row);
-    void activateRightJoyButtonListening(int row);
+//    void activateLeftJoyButtonListening(int row);
+//    void activateRightJoyButtonListening(int row);
 
-    void enableLeftButtonsConfig();
-    void disableLeftButtonsConfig();
-    void enableRightButtonsConfig();
-    void disableRightButtonsConfig();
+    void changeLeftButtonsConfig();
+//    void disableLeftButtonsConfig();
+    void changeRightButtonsConfig();
+//    void disableRightButtonsConfig();
+signals:
+    void buttonChangingDone();
 };
 
 #endif // CUSTOMCONFIGURATION_H
