@@ -25,6 +25,9 @@ private:
     QString prevLabel;
 private slots:
     void activateButtonListening(int row);
+    void activateLeftJoyButtonListening(int row);
+    void activateRightJoyButtonListening(int row);
+
     void enableLeftButtonsConfig();
     void disableLeftButtonsConfig();
     void enableRightButtonsConfig();
