@@ -25,6 +25,10 @@ private:
     QString prevLabel;
 private slots:
     void activateButtonListening(int row);
+    void enableLeftButtonsConfig();
+    void disableLeftButtonsConfig();
+    void enableRightButtonsConfig();
+    void disableRightButtonsConfig();
 };
 
 #endif // CUSTOMCONFIGURATION_H
