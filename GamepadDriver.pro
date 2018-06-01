@@ -34,7 +34,11 @@ SOURCES += \
     main.cpp \
     reactions/MouseJoystickReaction.cpp \
     reactions/KeyboardJoystickReaction.cpp \
+<<<<<<< HEAD
     CustomConfiguration.cpp
+=======
+    reactions/KeyboardKey.cpp
+>>>>>>> a8d6e69c484b0ffa803daa62560b54f3d1ec5fc6
 
 HEADERS += \
     Communicator.h \
@@ -45,7 +49,11 @@ HEADERS += \
     MainWindow.h \
     reactions/MouseJoystickReaction.h \
     reactions/KeyboardJoystickReaction.h \
+<<<<<<< HEAD
     CustomConfiguration.h
+=======
+    reactions/KeyboardKey.h
+>>>>>>> a8d6e69c484b0ffa803daa62560b54f3d1ec5fc6
 
 FORMS += \
         MainWindow.ui \
