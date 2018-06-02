@@ -3,15 +3,22 @@
 #include <QKeyEvent>
 #include <QKeySequence>
 #include <QString>
+#include "Constants.h"
 
-CustomConfiguration::CustomConfiguration(QWidget *parent) :
+
+//int** CustomConfiguration::_keyCodeArr = new int*[18]();
+
+CustomConfiguration::CustomConfiguration(Configurations& configurations, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CustomConfiguration),
+    _configurations(configurations),
     _currentItem(NULL),
+    _keyCodeArr(new int*[18]),
     _buttonListening(-1)
 {
     ui->setupUi(this);
-
+    initKeyArray();
+    loadConfiguration();
     //Activating button config for joysticks on radio change
     connect(ui->isLeftKeyboardControl, SIGNAL(clicked(bool)), this, SLOT(changeLeftButtonsConfig()));
     connect(ui->isLeftMouseControl, SIGNAL(clicked(bool)), this, SLOT(changeLeftButtonsConfig()));
@@ -31,18 +38,84 @@ CustomConfiguration::CustomConfiguration(QWidget *parent) :
 CustomConfiguration::~CustomConfiguration()
 {
     delete ui;
+    delete[] _keyCodeArr;
 }
 
 void CustomConfiguration::keyPressEvent(QKeyEvent *ev)
 {
     if(_currentItem != NULL)
     {
-        ui->testLabel->setText(QString("Setting %1 to %2").arg(QString::number(_buttonListening),
-                                                               QString::number(ev->nativeVirtualKey())));
+        /*ui->testLabel->setText(QString("Setting %1 to %2").arg(QString::number(_buttonListening),
+                                                               QString::number(ev->nativeVirtualKey())));*/
         _currentItem->setText(QKeySequence(ev->key()).toString());
-
+        *(_keyCodeArr[_buttonListening]) = ev->nativeVirtualKey();
         _buttonListening = -1;
         _currentItem = NULL;
+    }
+}
+
+void CustomConfiguration::initKeyArray()
+{
+    _keyCodeArr[0] = &_configurations.getPreferences()._leftTrigger;
+    _keyCodeArr[1] = &_configurations.getPreferences()._rightTrigger;
+    _keyCodeArr[2] = &_configurations.getPreferences()._xButton;
+    _keyCodeArr[3] = &_configurations.getPreferences()._aButton;
+    _keyCodeArr[4] = &_configurations.getPreferences()._bButton;
+    _keyCodeArr[5] = &_configurations.getPreferences()._yButton;
+    _keyCodeArr[6] = &_configurations.getPreferences()._leftFunctionButton;
+    _keyCodeArr[7] = &_configurations.getPreferences()._rightFunctionButton;
+    _keyCodeArr[8] = &_configurations.getPreferences()._leftJoystickButton;
+    _keyCodeArr[9] = &_configurations.getPreferences()._rightJoystickButton;
+    _keyCodeArr[10] = &_configurations.getPreferences()._leftJoystick._up;
+    _keyCodeArr[11] = &_configurations.getPreferences()._leftJoystick._down;
+    _keyCodeArr[12] = &_configurations.getPreferences()._leftJoystick._left;
+    _keyCodeArr[13] = &_configurations.getPreferences()._leftJoystick._right;
+    _keyCodeArr[14] = &_configurations.getPreferences()._rightJoystick._up;
+    _keyCodeArr[15] = &_configurations.getPreferences()._rightJoystick._down;
+    _keyCodeArr[16] = &_configurations.getPreferences()._rightJoystick._left;
+    _keyCodeArr[17] = &_configurations.getPreferences()._rightJoystick._right;
+}
+
+void CustomConfiguration::loadConfiguration()
+{
+    QTableWidget* buttonTable = ui->buttonTable;
+    QTableWidget* leftJoyTable = ui->leftButtonTable;
+    QTableWidget* rightJoyTable = ui->rightButtonTable;
+    unsigned int i;
+    for(i = 0; i<=9; ++i){
+        int currentKey = *(_keyCodeArr[i]);
+        if(currentKey != 0)
+            buttonTable->item(i,0)->setText(QKeySequence(currentKey).toString());
+    }
+    for(; i<=13; ++i){
+        int currentKey = *(_keyCodeArr[i]);
+        if(currentKey != 0)
+            leftJoyTable->item(i,0)->setText(QKeySequence(currentKey).toString());
+    }
+    for(; i<=17; ++i){
+        int currentKey = *(_keyCodeArr[i]);
+        if(currentKey != 0)
+            rightJoyTable->item(i,0)->setText(QKeySequence(currentKey).toString());
+    }
+
+    //Set checked radio and tables for joysticks
+    if(_configurations.getPreferences()._leftJoystick._type == JOYSTICK_MOUSE){
+        ui->leftButtonTable->setEnabled(false);
+        ui->leftButtonTable->setVisible(false);
+        ui->isLeftMouseControl->setChecked(true);
+    }else{
+        ui->leftButtonTable->setEnabled(true);
+        ui->leftButtonTable->setVisible(true);
+        ui->isLeftKeyboardControl->setChecked(true);
+    }
+    if(_configurations.getPreferences()._rightJoystick._type == JOYSTICK_MOUSE){
+        ui->rightButtonTable->setEnabled(false);
+        ui->rightButtonTable->setVisible(false);
+        ui->isRightMouseControl->setChecked(true);
+    }else{
+        ui->rightButtonTable->setEnabled(true);
+        ui->rightButtonTable->setVisible(true);
+        ui->isRightKeyboardControl->setChecked(true);
     }
 }
 
@@ -57,63 +130,37 @@ void CustomConfiguration::activateButtonListening(int row)
     _currentItem = table->item(row,0);
     _prevLabel = _currentItem->text();
     _currentItem -> setText("Press button now!");
-    _buttonListening = row;
     table->clearSelection();
-    emit buttonChangingDone();
+    QString tname = table->parent()->objectName();
+    if(tname.compare(ui->buttonTable->objectName()) == 0){
+        _buttonListening = row;
+        return;
+    }
+    if(tname.compare(ui->leftButtonTable->objectName()) == 0){
+        _buttonListening = row+10;
+        return;
+    }
+    if(tname.compare(ui->rightButtonTable->objectName()) == 0){
+        _buttonListening = row+14;
+        return;
+    }
 }
-
-//void CustomConfiguration::activateLeftJoyButtonListening(int row)
-//{
-//    //In case new key was not set to selected button
-//    if(_currentItem != NULL)
-//    {
-//        _currentItem->setText(_prevLabel);
-//    }
-//    _currentItem = ui->leftButtonTable->item(row,0);
-//    _prevLabel = _currentItem->text();
-//    _currentItem -> setText("Press button now!");
-//    _buttonListening = row;
-//    ui->buttonTable->clearSelection();
-//    emit buttonChangingDone();
-//}
-
-//void CustomConfiguration::activateRightJoyButtonListening(int row)
-//{
-//    //In case new key was not set to selected button
-//    if(_currentItem != NULL)
-//    {
-//        _currentItem->setText(_prevLabel);
-//    }
-//    _currentItem = ui->rightButtonTable->item(row,0);
-//    _prevLabel = _currentItem->text();
-//    _currentItem -> setText("Press button now!");
-//    _buttonListening = row;
-//    ui->buttonTable->clearSelection();
-//    emit buttonChangingDone();
-//}
 
 void CustomConfiguration::changeLeftButtonsConfig()
 {
-    bool enabled = ui->isLeftKeyboardControl->isChecked();
-    ui->leftButtonTable->setEnabled(enabled);
-    ui->leftButtonTable->setVisible(enabled);
-}
+    bool keyboardEnabled = ui->isLeftKeyboardControl->isChecked();
+    ui->leftButtonTable->setEnabled(keyboardEnabled);
+    ui->leftButtonTable->setVisible(keyboardEnabled);
 
-//void CustomConfiguration::disableLeftButtonsConfig()
-//{
-//    ui->leftButtonTable->setEnabled(false);
-//    ui->leftButtonTable->setVisible(false);
-//}
+    _configurations.getPreferences()._leftJoystick._type=keyboardEnabled;
+}
 
 void CustomConfiguration::changeRightButtonsConfig()
 {
-    bool enabled = ui->isRightKeyboardControl->isChecked();
-    ui->rightButtonTable->setEnabled(enabled);
-    ui->rightButtonTable->setVisible(enabled);
+    bool keyboardEnabled = ui->isRightKeyboardControl->isChecked();
+    ui->rightButtonTable->setEnabled(keyboardEnabled);
+    ui->rightButtonTable->setVisible(keyboardEnabled);
+
+    _configurations.getPreferences()._rightJoystick._type=keyboardEnabled;
 }
 
-//void CustomConfiguration::disableRightButtonsConfig()
-//{
-//    ui->rightButtonTable->setEnabled(false);
-//    ui->rightButtonTable->setVisible(false);
-//}

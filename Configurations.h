@@ -28,7 +28,7 @@ public:
         int _yButton;
         int _leftFunctionButton;
         int _rightFunctionButton;
-        int _leftJoystickButon;
+        int _leftJoystickButton;
         int _rightJoystickButton;
     };
     Configurations(QString = "");

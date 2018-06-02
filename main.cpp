@@ -22,7 +22,9 @@ int main(int argc, char *argv[])
 //    //connect device data do handler
 //    QObject::connect(&comm, SIGNAL(newDeviceState(GamepadState)),&handler, SLOT(joystickStateChanged(GamepadState)));
 
-    CustomConfiguration customConfiguration;
+    Configurations configs;
+
+    CustomConfiguration customConfiguration(configs);
     customConfiguration.show();
 
     return a.exec();

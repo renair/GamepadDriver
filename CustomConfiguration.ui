@@ -152,19 +152,6 @@
     </property>
    </item>
   </widget>
-  <widget class="QLabel" name="testLabel">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>260</y>
-     <width>81</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="leftJoyLabel">
    <property name="geometry">
     <rect>
@@ -349,7 +336,7 @@
     </property>
    </item>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>201</x>
@@ -384,7 +371,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>351</x>
@@ -403,7 +390,7 @@
        <string>MouseMovement</string>
       </property>
       <property name="checked">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
      </widget>
     </item>
@@ -414,6 +401,9 @@
       </property>
       <property name="text">
        <string>KeyboardMovement</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
