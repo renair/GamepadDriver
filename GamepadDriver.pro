@@ -58,4 +58,5 @@ FORMS += \
 
 DISTFILES += \
     .gitignore \
-    README.md
+    README.md \
+    diagram.qmodel
