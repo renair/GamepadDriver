@@ -1,12 +1,12 @@
 #include "CustomConfiguration.h"
 #include "ui_CustomConfiguration.h"
 #include <QKeyEvent>
+#include <QMouseEvent>
 #include <QKeySequence>
 #include <QString>
 #include "Constants.h"
 
 
-//int** CustomConfiguration::_keyCodeArr = new int*[18]();
 
 CustomConfiguration::CustomConfiguration(Configurations& configurations, QWidget *parent) :
     QWidget(parent),
@@ -29,10 +29,9 @@ CustomConfiguration::CustomConfiguration(Configurations& configurations, QWidget
     connect(ui->buttonTable->verticalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(activateButtonListening(int)));
     connect(ui->leftButtonTable->verticalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(activateButtonListening(int)));
     connect(ui->rightButtonTable->verticalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(activateButtonListening(int)));
-//    connect(ui->leftButtonTable->verticalHeader(), SIGNAL(sectionClicked(int)), this,
-//            SLOT(activateLeftJoyButtonListening(int)));
-//    connect(ui->rightButtonTable->verticalHeader(), SIGNAL(sectionClicked(int)), this,
-//            SLOT(activateRightJoyButtonListening(int)));
+
+    //Mouse listening
+    //connect(ui->buttonTable, SIGNAL(), this, SLOT(changeRightButtonsConfig()));
 }
 
 CustomConfiguration::~CustomConfiguration()
@@ -41,18 +40,32 @@ CustomConfiguration::~CustomConfiguration()
     delete[] _keyCodeArr;
 }
 
+
 void CustomConfiguration::keyPressEvent(QKeyEvent *ev)
 {
     if(_currentItem != NULL)
     {
-        /*ui->testLabel->setText(QString("Setting %1 to %2").arg(QString::number(_buttonListening),
-                                                               QString::number(ev->nativeVirtualKey())));*/
         _currentItem->setText(QKeySequence(ev->key()).toString());
         *(_keyCodeArr[_buttonListening]) = ev->nativeVirtualKey();
         _buttonListening = -1;
         _currentItem = NULL;
     }
 }
+
+/*
+void CustomConfiguration::mousePressEvent(QMouseEvent *ev)
+{
+    if(_currentItem != NULL)
+    {
+        Qt::MouseButton mb = ev->button();
+        if(mb!=Qt::NoButton){
+            _currentItem->setText(QKeySequence(mb).toString());
+            *(_keyCodeArr[_buttonListening]) = mb;
+            _buttonListening = -1;
+            _currentItem = NULL;
+        }
+    }
+}*/
 
 void CustomConfiguration::initKeyArray()
 {
