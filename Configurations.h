@@ -33,8 +33,8 @@ public:
     };
     Configurations(QString = "");
     ~Configurations();
-    bool loadPreferences(QString = "driver.prefs");
-    bool savePreferences(QString = "driver.prefs");
+    bool loadPreferences(const QString& = "driver.prefs");
+    bool savePreferences(const QString& = "driver.prefs");
     void makeDefault();
     KeyCodesPreference& getPreferences();
     const KeyCodesPreference& getPreferences() const;

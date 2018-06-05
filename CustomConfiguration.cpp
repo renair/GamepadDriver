@@ -4,6 +4,7 @@
 #include <QMouseEvent>
 #include <QKeySequence>
 #include <QString>
+#include <QMessageBox>
 #include "Constants.h"
 
 
@@ -77,12 +78,12 @@ void CustomConfiguration::loadConfiguration()
     for(; i<=13; ++i){
         int currentKey = *(_keyCodeArr[i]);
         if(currentKey != 0)
-            leftJoyTable->item(i,0)->setText(QKeySequence(currentKey).toString());
+            leftJoyTable->item(i - 10,0)->setText(QKeySequence(currentKey).toString());
     }
     for(; i<=17; ++i){
         int currentKey = *(_keyCodeArr[i]);
         if(currentKey != 0)
-            rightJoyTable->item(i,0)->setText(QKeySequence(currentKey).toString());
+            rightJoyTable->item(i - 14,0)->setText(QKeySequence(currentKey).toString());
     }
 
     //Set checked radio and tables for joysticks
@@ -135,7 +136,10 @@ void CustomConfiguration::activateButtonListening(int row)
 
 void CustomConfiguration::saveChanges()
 {
-    _configurations.savePreferences();
+    if(!_configurations.savePreferences())
+    {
+        QMessageBox::warning(this, "File not saved" ,"Can't save file. If it open with some other program, please close it.");
+    }
     emit buttonChangingDone();
 }
 

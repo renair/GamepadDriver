@@ -1,5 +1,6 @@
 #include <iostream>
 #include <QApplication>
+#include <QMessageBox>
 #include "Communicator.h"
 #include "EventHandler.h"
 #include "CustomConfiguration.h"
@@ -18,6 +19,7 @@ int main(int argc, char *argv[])
     if(!comm.detectDevice())
     {
         cout << "Device not found!" << endl;
+        QMessageBox::warning(NULL, "Device not found" ,"Please connect device to computer and try again.");
         return 1;
     }
     comm.enableDevice();
