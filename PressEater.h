@@ -3,10 +3,10 @@
 #include <QObject>
 #include "CustomConfiguration.h"
 
-class MousePressEater : public QObject{
+class PressEater : public QObject{
     Q_OBJECT
 public:
-    MousePressEater(CustomConfiguration* parent);
+    PressEater(CustomConfiguration* parent);
 private:
     CustomConfiguration* _parent;
 protected:

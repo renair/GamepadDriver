@@ -40,6 +40,9 @@
    <property name="verticalScrollBarPolicy">
     <enum>Qt::ScrollBarAlwaysOff</enum>
    </property>
+   <property name="autoScroll">
+    <bool>false</bool>
+   </property>
    <property name="selectionMode">
     <enum>QAbstractItemView::NoSelection</enum>
    </property>
@@ -214,6 +217,9 @@
    <property name="verticalScrollBarPolicy">
     <enum>Qt::ScrollBarAlwaysOff</enum>
    </property>
+   <property name="autoScroll">
+    <bool>false</bool>
+   </property>
    <property name="tabKeyNavigation">
     <bool>false</bool>
    </property>
@@ -295,6 +301,9 @@
    </property>
    <property name="verticalScrollBarPolicy">
     <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="autoScroll">
+    <bool>false</bool>
    </property>
    <property name="tabKeyNavigation">
     <bool>false</bool>
@@ -426,6 +435,19 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="saveButton">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>310</y>
+     <width>80</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Save Changes</string>
+   </property>
   </widget>
  </widget>
  <resources/>

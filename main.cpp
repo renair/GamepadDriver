@@ -3,7 +3,7 @@
 #include "Communicator.h"
 #include "EventHandler.h"
 #include "CustomConfiguration.h"
-#include "MouserPressEater.h"
+#include "PressEater.h"
 
 using namespace std;
 
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 
     CustomConfiguration customConfiguration(configs);
 
-    a.installEventFilter(new MousePressEater(&customConfiguration));
+    a.installEventFilter(new PressEater(&customConfiguration));
     customConfiguration.show();
 
     return a.exec();

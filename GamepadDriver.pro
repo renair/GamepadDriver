@@ -37,7 +37,7 @@ SOURCES += \
     CustomConfiguration.cpp \
     reactions/KeyboardKey.cpp \
     Configurations.cpp \
-    MouserPressEater.cpp
+    PressEater.cpp
 
 HEADERS += \
     Communicator.h \
@@ -51,7 +51,7 @@ HEADERS += \
     CustomConfiguration.h \
     reactions/KeyboardKey.h \
     Configurations.h \
-    MouserPressEater.h
+    PressEater.h
 
 FORMS += \
     CustomConfiguration.ui
