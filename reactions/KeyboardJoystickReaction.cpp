@@ -16,7 +16,7 @@ void KeyboardJoystickReaction::react(byte direction)
     if(diff & UP)
     {
         _input.ki.wVk = 0x57; // W key
-        _input.ki.wScan = MapVirtualKey(0x57, MAPVK_VK_TO_VSC);
+        _input.ki.wScan = MapVirtualKey(0x44, MAPVK_VK_TO_VSC);
         _input.ki.dwFlags = direction & UP ? 0 : KEYEVENTF_KEYUP; // if bit is set - then no flags, otherwise key up
         SendInput(1, &_input, sizeof(INPUT));
     }

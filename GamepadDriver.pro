@@ -59,4 +59,7 @@ FORMS += \
 DISTFILES += \
     .gitignore \
     README.md \
-    diagram.qmodel
+    diagram.qmodel \
+    hardwareuml.qmodel
+
+STATECHARTS +=

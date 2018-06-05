@@ -14,7 +14,12 @@ class CustomConfiguration;
 class CustomConfiguration : public QWidget
 {
     Q_OBJECT
-
+private:
+    Ui::CustomConfiguration* ui;
+    Configurations& _configurations;
+    void keyPressEvent(QKeyEvent* ev);
+    void initKeyArray();
+    void loadConfiguration();
 public:
     QTableWidgetItem* _currentItem;
     QString _prevLabel;
@@ -24,13 +29,6 @@ public:
     explicit CustomConfiguration(Configurations &configurations,
                                  QWidget* parent = NULL);
     ~CustomConfiguration();
-
-private:
-    Ui::CustomConfiguration* ui;
-    Configurations& _configurations;
-    void keyPressEvent(QKeyEvent* ev);
-    void initKeyArray();
-    void loadConfiguration();
 private slots:
     void activateButtonListening(int row);
 

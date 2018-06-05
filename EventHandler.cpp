@@ -20,7 +20,7 @@ EventHandler::EventHandler():
     _leftJoystickButon(0x07),
     _rightJoystickButton(0x07)
 {
-    _rightJoystick = new MouseJoystickReaction;
+    _rightJoystick = new KeyboardJoystickReaction;//MouseJoystickReaction;
 }
 
 EventHandler::~EventHandler()
