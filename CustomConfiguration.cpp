@@ -9,14 +9,15 @@
 
 
 CustomConfiguration::CustomConfiguration(Configurations& configurations, QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::CustomConfiguration),
-    _configurations(configurations),
     _currentItem(NULL),
     _keyCodeArr(new int*[18]),
-    _buttonListening(-1)
+    _buttonListening(-1),
+    QWidget(parent),
+    ui(new Ui::CustomConfiguration),
+    _configurations(configurations)
 {
     ui->setupUi(this);
+    _configurations.loadPreferences();
     initKeyArray();
     loadConfiguration();
     //Activating button config for joysticks on radio change
@@ -30,8 +31,8 @@ CustomConfiguration::CustomConfiguration(Configurations& configurations, QWidget
     connect(ui->leftButtonTable->verticalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(activateButtonListening(int)));
     connect(ui->rightButtonTable->verticalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(activateButtonListening(int)));
 
-    //Mouse listening
-    //connect(ui->buttonTable, SIGNAL(), this, SLOT(changeRightButtonsConfig()));
+    //Save configuration
+    connect(ui->saveButton, SIGNAL(clicked(bool)), this, SLOT(saveChanges()));
 }
 
 CustomConfiguration::~CustomConfiguration()
@@ -39,33 +40,6 @@ CustomConfiguration::~CustomConfiguration()
     delete ui;
     delete[] _keyCodeArr;
 }
-
-
-void CustomConfiguration::keyPressEvent(QKeyEvent *ev)
-{
-    if(_currentItem != NULL)
-    {
-        _currentItem->setText(QKeySequence(ev->key()).toString());
-        *(_keyCodeArr[_buttonListening]) = ev->nativeVirtualKey();
-        _buttonListening = -1;
-        _currentItem = NULL;
-    }
-}
-
-/*
-void CustomConfiguration::mousePressEvent(QMouseEvent *ev)
-{
-    if(_currentItem != NULL)
-    {
-        Qt::MouseButton mb = ev->button();
-        if(mb!=Qt::NoButton){
-            _currentItem->setText(QKeySequence(mb).toString());
-            *(_keyCodeArr[_buttonListening]) = mb;
-            _buttonListening = -1;
-            _currentItem = NULL;
-        }
-    }
-}*/
 
 void CustomConfiguration::initKeyArray()
 {
@@ -157,6 +131,11 @@ void CustomConfiguration::activateButtonListening(int row)
         _buttonListening = row+14;
         return;
     }
+}
+
+void CustomConfiguration::saveChanges()
+{
+    _configurations.savePreferences();
 }
 
 void CustomConfiguration::changeLeftButtonsConfig()

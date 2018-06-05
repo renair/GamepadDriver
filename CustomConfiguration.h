@@ -17,7 +17,6 @@ class CustomConfiguration : public QWidget
 private:
     Ui::CustomConfiguration* ui;
     Configurations& _configurations;
-    void keyPressEvent(QKeyEvent* ev);
     void initKeyArray();
     void loadConfiguration();
 public:
@@ -31,7 +30,7 @@ public:
     ~CustomConfiguration();
 private slots:
     void activateButtonListening(int row);
-
+    void saveChanges();
     void changeLeftButtonsConfig();
     void changeRightButtonsConfig();
 signals:
