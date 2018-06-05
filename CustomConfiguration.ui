@@ -439,11 +439,16 @@
   <widget class="QPushButton" name="saveButton">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>310</y>
-     <width>80</width>
-     <height>21</height>
+     <x>290</x>
+     <y>280</y>
+     <width>111</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Save Changes</string>

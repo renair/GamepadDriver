@@ -16,6 +16,6 @@ public:
     MouseJoystickReaction();
     MouseJoystickReaction(const MouseJoystickReaction&) = delete;
     MouseJoystickReaction& operator=(const MouseJoystickReaction&) = delete;
-    ~MouseJoystickReaction();
+    virtual ~MouseJoystickReaction();
 };
 #endif // MOUSEJOYSTICKREACTION_H

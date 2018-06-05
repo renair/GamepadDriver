@@ -67,7 +67,6 @@ bool PressEater::eventFilter(QObject *obj, QEvent *event)
             _parent->_currentItem = NULL;
             return true;
         }
-
     }
     // standard event processing
     return QObject::eventFilter(obj, event);

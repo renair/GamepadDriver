@@ -17,7 +17,7 @@ private slots:
     void activate();
 public:
     JoystickReaction();
-    ~JoystickReaction();
+    virtual ~JoystickReaction();
     void setDirection(byte);
 };
 

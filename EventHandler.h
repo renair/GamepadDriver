@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "GamepadState.h"
+#include "Configurations.h"
 #include "reactions/JoystickReaction.h"
 #include "reactions/KeyboardKey.h"
 
@@ -10,6 +11,7 @@ class EventHandler : public QObject
 {
 Q_OBJECT
 private:
+    Configurations& _configs;
     JoystickReaction* _leftJoystick;
     JoystickReaction* _rightJoystick;
     KeyboardKey _leftTrigger;
@@ -23,12 +25,13 @@ private:
     KeyboardKey _leftJoystickButon;
     KeyboardKey _rightJoystickButton;
 public:
-    EventHandler();
+    EventHandler(Configurations&);
     EventHandler(const EventHandler&) = delete;
     EventHandler& operator=(const EventHandler&) = delete;
     ~EventHandler();
 public slots:
     void joystickStateChanged(GamepadState);
+    void updateConfiguration();
 };
 
 #endif // EVENTHANDLER_H

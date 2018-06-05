@@ -9,12 +9,12 @@
 
 
 CustomConfiguration::CustomConfiguration(Configurations& configurations, QWidget *parent) :
-    _currentItem(NULL),
-    _keyCodeArr(new int*[18]),
-    _buttonListening(-1),
     QWidget(parent),
     ui(new Ui::CustomConfiguration),
-    _configurations(configurations)
+    _configurations(configurations),
+    _currentItem(NULL),
+    _keyCodeArr(new int*[18]),
+    _buttonListening(-1)
 {
     ui->setupUi(this);
     _configurations.loadPreferences();
@@ -136,6 +136,7 @@ void CustomConfiguration::activateButtonListening(int row)
 void CustomConfiguration::saveChanges()
 {
     _configurations.savePreferences();
+    emit buttonChangingDone();
 }
 
 void CustomConfiguration::changeLeftButtonsConfig()
@@ -144,7 +145,7 @@ void CustomConfiguration::changeLeftButtonsConfig()
     ui->leftButtonTable->setEnabled(keyboardEnabled);
     ui->leftButtonTable->setVisible(keyboardEnabled);
 
-    _configurations.getPreferences()._leftJoystick._type=keyboardEnabled;
+    _configurations.getPreferences()._leftJoystick._type = keyboardEnabled;
 }
 
 void CustomConfiguration::changeRightButtonsConfig()
@@ -153,6 +154,6 @@ void CustomConfiguration::changeRightButtonsConfig()
     ui->rightButtonTable->setEnabled(keyboardEnabled);
     ui->rightButtonTable->setVisible(keyboardEnabled);
 
-    _configurations.getPreferences()._rightJoystick._type=keyboardEnabled;
+    _configurations.getPreferences()._rightJoystick._type = keyboardEnabled;
 }
 

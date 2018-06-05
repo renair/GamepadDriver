@@ -12,7 +12,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     //create objects
     Communicator comm;
-    EventHandler handler;
+    Configurations configs;
+    EventHandler handler(configs);
     //setup its
     if(!comm.detectDevice())
     {
@@ -20,12 +21,11 @@ int main(int argc, char *argv[])
         return 1;
     }
     comm.enableDevice();
-    //connect device data do handler
+    //connect device data to handler
     QObject::connect(&comm, SIGNAL(newDeviceState(GamepadState)),&handler, SLOT(joystickStateChanged(GamepadState)));
 
-    Configurations configs;
-
     CustomConfiguration customConfiguration(configs);
+    QObject::connect(&customConfiguration, SIGNAL(buttonChangingDone()), &handler, SLOT(updateConfiguration()));
 
     a.installEventFilter(new PressEater(&customConfiguration));
     customConfiguration.show();

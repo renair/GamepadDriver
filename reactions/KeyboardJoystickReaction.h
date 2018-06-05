@@ -3,17 +3,19 @@
 
 #include <windows.h>
 #include "JoystickReaction.h"
+#include "../Configurations.h"
 
 class KeyboardJoystickReaction : public JoystickReaction
 {
 private:
     virtual void react(byte);
+    JoystickKeyCodes& _keyCodes;
     byte _prevDirection;
     INPUT _input;
 public:
-    KeyboardJoystickReaction();
+    KeyboardJoystickReaction(JoystickKeyCodes&);
     KeyboardJoystickReaction(const KeyboardJoystickReaction&) = delete;
-    ~KeyboardJoystickReaction();
+    virtual ~KeyboardJoystickReaction();
     KeyboardJoystickReaction& operator=(const KeyboardJoystickReaction&) = delete;
 };
 
