@@ -47,7 +47,7 @@ void Configurations::makeDefault()
     getPreferences()._aButton = 0x46; // F
     getPreferences()._bButton = 0x45; // E
     getPreferences()._yButton = 0x52; // R
-    getPreferences()._leftFunctionButton = 0x1B; // Esc
+    getPreferences()._leftFunctionButton = 0x25; // Esc
     getPreferences()._rightFunctionButton = 0x09; // Tab
     getPreferences()._leftJoystickButton = 0x43; // C
     getPreferences()._rightJoystickButton = 0x47; // G

@@ -5,6 +5,7 @@
 #include <QKeySequence>
 #include <QString>
 #include <QMessageBox>
+#include <windows.h>
 #include "Constants.h"
 
 
@@ -73,17 +74,17 @@ void CustomConfiguration::loadConfiguration()
     for(i = 0; i<=9; ++i){
         int currentKey = *(_keyCodeArr[i]);
         if(currentKey != 0)
-            buttonTable->item(i,0)->setText(QKeySequence(currentKey).toString());
+            buttonTable->item(i,0)->setText(getKeyName(currentKey));
     }
     for(; i<=13; ++i){
         int currentKey = *(_keyCodeArr[i]);
         if(currentKey != 0)
-            leftJoyTable->item(i - 10,0)->setText(QKeySequence(currentKey).toString());
+            leftJoyTable->item(i - 10,0)->setText(getKeyName(currentKey));
     }
     for(; i<=17; ++i){
         int currentKey = *(_keyCodeArr[i]);
         if(currentKey != 0)
-            rightJoyTable->item(i - 14,0)->setText(QKeySequence(currentKey).toString());
+            rightJoyTable->item(i - 14,0)->setText(getKeyName(currentKey));
     }
 
     //Set checked radio and tables for joysticks
@@ -105,6 +106,32 @@ void CustomConfiguration::loadConfiguration()
         ui->rightButtonTable->setVisible(true);
         ui->isRightKeyboardControl->setChecked(true);
     }
+}
+
+QString CustomConfiguration::getKeyName(int code)
+{
+    switch(code){
+        case 0x01:
+            return QString("LMB");
+        case 0x02:
+            return QString("RMB");
+        case 0x04:
+            return QString("MMB");
+        case 0x05:
+            return QString("Fwd MB");
+        case 0x06:
+            return QString("Back MB");
+
+    }
+    wchar_t *name = new wchar_t[1024];
+    unsigned int scanCode = MapVirtualKeyW(code, MAPVK_VK_TO_VSC);
+    long lParamValue = (scanCode << 16);
+    int result = GetKeyNameText(lParamValue, name, 1024);
+    if (result > 0)
+    {
+        return QString::fromWCharArray(name,128);
+    }
+    return QString("ERRORERRORERRORERRORERRORERRORERRORERRORERROR");
 }
 
 void CustomConfiguration::activateButtonListening(int row)
