@@ -5,8 +5,9 @@
 
 class KeyboardKey
 {
-    bool _state;
     INPUT _input;
+    bool _state;
+    short _keycode;
 public:
     KeyboardKey(int);
     ~KeyboardKey();
