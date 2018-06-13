@@ -19,7 +19,6 @@ CustomConfiguration::CustomConfiguration(Configurations& configurations, QWidget
     _buttonListening(-1)
 {
     ui->setupUi(this);
-    _configurations.loadPreferences();
     initKeyArray();
     loadConfiguration();
     //Activating button config for joysticks on radio change

@@ -57,7 +57,7 @@ void Configurations::makeDefault()
     getPreferences()._leftJoystick._left = 0x41; // A
     getPreferences()._leftJoystick._right = 0x44; // D
     getPreferences()._rightJoystick._type = JOYSTICK_MOUSE;
-    getPreferences()._rightJoystick._up = 0;
+    getPreferences()._rightJoystick._up = 0x57;
     getPreferences()._rightJoystick._down = 0;
     getPreferences()._rightJoystick._left = 0;
     getPreferences()._rightJoystick._right = 0;
