@@ -29,6 +29,7 @@ private:
     GamepadState _gamepadState;
 
     void setupPort();
+    void setDataHandler();
     bool testDevice();
 private slots:
     void dataArrived();

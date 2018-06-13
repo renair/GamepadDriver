@@ -23,11 +23,25 @@ void Communicator::setupPort()
     _serialPort->setParity(QSerialPort::NoParity);
     _serialPort->setFlowControl(QSerialPort::NoFlowControl);
     _serialPort->setDataBits(QSerialPort::Data8);
+}
+
+void Communicator::setDataHandler()
+{
     connect(_serialPort, SIGNAL(readyRead()), this, SLOT(dataArrived()));
 }
 
 bool Communicator::testDevice()
 {
+    std::cout<<"Testing device on "<<_portName.toStdString()<<" port"<<std::endl;
+    enableDevice();
+    _serialPort->write("joi?");
+    _serialPort->flush();
+    _serialPort->waitForReadyRead(5000);
+    _serialPort->waitForReadyRead(5000);
+    if(_serialPort->readLine()!="yes)"){
+        disableDevice();
+        return false;
+    }
     return true;
 }
 
@@ -50,6 +64,8 @@ bool Communicator::detectDevice()
         _portName = portInfo.portName();
         if(testDevice())
         {
+            std::cout<<"Connected to "<<_portName.toStdString()<<" port"<<std::endl;
+            setDataHandler();
             return true;
         }
     }
@@ -63,7 +79,7 @@ bool Communicator::isDeviceEnabled()
 
 void Communicator::enableDevice()
 {
-    if(_serialPort && _serialPort->isOpen() && _serialPort->portName() == _portName)
+    if(isDeviceEnabled() && _serialPort->portName() == _portName)
     {
         return;
     }
@@ -77,7 +93,7 @@ void Communicator::enableDevice()
     bool isOpened = _serialPort->open(QSerialPort::ReadWrite);
     if(!isOpened)
     {
-        std::cout << "Port not opened!" << std::endl;
+        std::cout << "Port " << _portName.toStdString() << " not opened!" << std::endl;
     }
 }
 
