@@ -38,6 +38,7 @@ public:
     ~Communicator();
     bool detectDevice();
     bool isDeviceEnabled();
+public slots:
     void enableDevice();
     void disableDevice();
 signals:

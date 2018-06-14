@@ -122,13 +122,14 @@ QString CustomConfiguration::getKeyName(int code)
             return QString("Back MB");
 
     }
-    wchar_t *name = new wchar_t[1024];
+    const int size = 30;
+    wchar_t name[size];
     unsigned int scanCode = MapVirtualKeyW(code, MAPVK_VK_TO_VSC);
     long lParamValue = (scanCode << 16);
-    int result = GetKeyNameText(lParamValue, name, 1024);
+    int result = GetKeyNameText(lParamValue, name, size);
     if (result > 0)
     {
-        return QString::fromWCharArray(name,128);
+        return QString::fromWCharArray(name,result);
     }
     return QString("ERRORERRORERRORERRORERRORERRORERRORERRORERROR");
 }

@@ -32,13 +32,17 @@ void Communicator::setDataHandler()
 
 bool Communicator::testDevice()
 {
-    std::cout<<"Testing device on "<<_portName.toStdString()<<" port"<<std::endl;
+    std::cout << "Testing device on " << _portName.toStdString() << " port" << std::endl;
     enableDevice();
     _serialPort->write("joi?");
     _serialPort->flush();
-    _serialPort->waitForReadyRead(5000);
-    _serialPort->waitForReadyRead(5000);
-    if(_serialPort->readLine()!="yes)"){
+    for(int i = 0; i < 50 && _serialPort->bytesAvailable() < 4;++i)
+    {
+        _serialPort->waitForReadyRead(100);
+    }
+    QString str(_serialPort->read(4));
+    if(str != "yes)")
+    {
         disableDevice();
         return false;
     }
@@ -99,6 +103,7 @@ void Communicator::enableDevice()
 
 void Communicator::disableDevice()
 {
+    std::cout << "disabling device" << std::endl;
     if(!_serialPort)
     {
         return;

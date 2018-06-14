@@ -32,5 +32,6 @@ int main(int argc, char *argv[])
     a.installEventFilter(new PressEater(&customConfiguration));
     customConfiguration.show();
 
+    QObject::connect(&a, SIGNAL(aboutToQuit()), &comm, SLOT(disableDevice()));
     return a.exec();
 }
