@@ -1,5 +1,6 @@
 #include "Communicator.h"
 #include <QSerialPortInfo>
+#include <QThread>
 #include <iostream>
 #include <bitset>
 
@@ -95,15 +96,17 @@ void Communicator::enableDevice()
     _serialPort = new QSerialPort(_portName);
     setupPort();
     bool isOpened = _serialPort->open(QSerialPort::ReadWrite);
+    QThread::sleep(2);
     if(!isOpened)
     {
         std::cout << "Port " << _portName.toStdString() << " not opened!" << std::endl;
+        return;
     }
 }
 
 void Communicator::disableDevice()
 {
-    std::cout << "disabling device" << std::endl;
+    std::cout << "Disabling device at " << _portName.toStdString() << std::endl;
     if(!_serialPort)
     {
         return;
