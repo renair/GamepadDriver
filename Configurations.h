@@ -31,7 +31,7 @@ public:
         int _leftJoystickButton;
         int _rightJoystickButton;
     };
-    Configurations(QString = "");
+    Configurations(QString = "driver.prefs");
     ~Configurations();
     bool loadPreferences(const QString& = "driver.prefs");
     bool savePreferences(const QString& = "driver.prefs");

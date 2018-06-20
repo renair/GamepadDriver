@@ -63,3 +63,5 @@ DISTFILES += \
     hardwareuml.qmodel
 
 STATECHARTS +=
+
+win32:RC_ICONS += joyicon.ico

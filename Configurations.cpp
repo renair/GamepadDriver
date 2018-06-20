@@ -3,6 +3,7 @@
 
 Configurations::Configurations(QString filename)
 {
+    QString s = filename;
     // make preferences default if filename is empty or file can't be loaded
     if(filename.isEmpty() || !loadPreferences(filename))
     {
