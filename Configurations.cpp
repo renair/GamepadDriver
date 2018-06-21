@@ -14,6 +14,7 @@ Configurations::Configurations(QString filename)
 Configurations::~Configurations()
 {}
 
+//loading saved preferences from file
 bool Configurations::loadPreferences(const QString& filename)
 {
     QFile file(filename);
@@ -27,6 +28,7 @@ bool Configurations::loadPreferences(const QString& filename)
     return read == pref_size;
 }
 
+//saving preferences to file
 bool Configurations::savePreferences(const QString& filename)
 {
     QFile file(filename);
@@ -40,6 +42,7 @@ bool Configurations::savePreferences(const QString& filename)
     return written == pref_size;
 }
 
+//setting up default preferences
 void Configurations::makeDefault()
 {
     getPreferences()._leftTrigger = 0x02; // RMB

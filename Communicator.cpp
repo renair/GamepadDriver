@@ -12,6 +12,7 @@ Communicator::~Communicator()
     delete _serialPort;
 }
 
+//configuring port before connecting
 void Communicator::setupPort()
 {
     if(!_serialPort || _serialPort->isOpen())
@@ -25,11 +26,14 @@ void Communicator::setupPort()
     _serialPort->setDataBits(QSerialPort::Data8);
 }
 
+//adding listener to changing gamepad state
 void Communicator::setDataHandler()
 {
     connect(_serialPort, SIGNAL(readyRead()), this, SLOT(dataArrived()));
 }
 
+//handshake that test device to which we try connect
+//return true if it's gamepad
 bool Communicator::testDevice()
 {
     std::cout << "Testing device on " << _portName.toStdString() << " port" << std::endl;
@@ -52,6 +56,7 @@ bool Communicator::testDevice()
     return true;
 }
 
+//reading data from port queue
 void Communicator::dataArrived()
 {
     Q_ASSERT(_serialPort != NULL);
@@ -64,6 +69,7 @@ void Communicator::dataArrived()
     }
 }
 
+//getting list of active ports and testing for gamepad
 bool Communicator::detectDevice()
 {
     for(QSerialPortInfo& portInfo : QSerialPortInfo::availablePorts())
@@ -84,6 +90,7 @@ bool Communicator::isDeviceEnabled()
     return _serialPort && _serialPort->isOpen();
 }
 
+//configuring and trying to open port
 bool Communicator::enableDevice()
 {
     if(isDeviceEnabled() && _serialPort->portName() == _portName)
@@ -106,6 +113,7 @@ bool Communicator::enableDevice()
     return isOpened;
 }
 
+//closing port
 void Communicator::disableDevice()
 {
     std::cout << "Disabling device at " << _portName.toStdString() << std::endl;
