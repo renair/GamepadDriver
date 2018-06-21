@@ -2,7 +2,6 @@
 #include <QSerialPortInfo>
 #include <QThread>
 #include <iostream>
-#include <bitset>
 
 Communicator::Communicator():
     _serialPort(NULL)

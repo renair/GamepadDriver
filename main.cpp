@@ -11,7 +11,9 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    //create objects
+
+
+//    //create objects
     Communicator comm;
     Configurations configs;
     EventHandler handler(configs);

@@ -8,8 +8,6 @@
 #include <windows.h>
 #include "Constants.h"
 
-
-
 CustomConfiguration::CustomConfiguration(Configurations& configurations, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CustomConfiguration),

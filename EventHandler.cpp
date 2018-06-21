@@ -1,5 +1,3 @@
-#include <iostream>
-#include <bitset>
 #include "EventHandler.h"
 #include "reactions/MouseJoystickReaction.h"
 #include "reactions/KeyboardJoystickReaction.h"
@@ -10,16 +8,16 @@ EventHandler::EventHandler(Configurations& conf):
     _configs(conf),
     _leftJoystick(NULL),
     _rightJoystick(NULL),
-    _leftTrigger(0x07), // 0x07 - undefined value
-    _rightTrigger(0x07),
-    _xButton(0x07),
-    _aButton(0x07),
-    _bButton(0x07),
-    _yButton(0x07),
-    _leftFunctionButton(0x07),
-    _rightFunctionButton(0x07),
-    _leftJoystickButon(0x07),
-    _rightJoystickButton(0x07)
+    _leftTrigger(0x00), // 0x00 - undefined value
+    _rightTrigger(0x00),
+    _xButton(0x00),
+    _aButton(0x00),
+    _bButton(0x00),
+    _yButton(0x00),
+    _leftFunctionButton(0x00),
+    _rightFunctionButton(0x00),
+    _leftJoystickButon(0x00),
+    _rightJoystickButton(0x00)
 {
         updateConfiguration();
 }

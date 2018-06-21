@@ -1,6 +1,5 @@
 #include "MouseJoystickReaction.h"
 #include <windowsx.h>
-#include <iostream>
 
 const int MouseJoystickReaction::_step = 5;
 
@@ -52,7 +51,6 @@ void MouseJoystickReaction::react(byte direction)
              _pos.x = -_step;
              break;
     default:
-             _isActual = false;
              return;
     }
     _input.mi.dx = _pos.x;
