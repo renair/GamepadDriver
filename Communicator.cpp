@@ -33,7 +33,10 @@ void Communicator::setDataHandler()
 bool Communicator::testDevice()
 {
     std::cout << "Testing device on " << _portName.toStdString() << " port" << std::endl;
-    enableDevice();
+    if(!enableDevice())
+    {
+        return false;
+    }
     _serialPort->write("joi?");
     _serialPort->flush();
     for(int i = 0; i < 50 && _serialPort->bytesAvailable() < 4;++i)
@@ -81,11 +84,11 @@ bool Communicator::isDeviceEnabled()
     return _serialPort && _serialPort->isOpen();
 }
 
-void Communicator::enableDevice()
+bool Communicator::enableDevice()
 {
     if(isDeviceEnabled() && _serialPort->portName() == _portName)
     {
-        return;
+        return true;
     }
     if(_serialPort)
     {
@@ -99,8 +102,8 @@ void Communicator::enableDevice()
     if(!isOpened)
     {
         std::cout << "Port " << _portName.toStdString() << " not opened!" << std::endl;
-        return;
     }
+    return isOpened;
 }
 
 void Communicator::disableDevice()

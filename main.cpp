@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     if(!comm.detectDevice())
     {
         cout << "Device not found!" << endl;
-        QMessageBox::warning(NULL, "Device not found" ,"Please connect device to computer and try again.");
+        QMessageBox::warning(NULL, "Device not found" ,"Please connect device to computer and try again or if device has already connected reconnect it to another port.");
         return 1;
     }
     comm.enableDevice();

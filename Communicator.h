@@ -39,7 +39,7 @@ public:
     bool detectDevice();
     bool isDeviceEnabled();
 public slots:
-    void enableDevice();
+    bool enableDevice();
     void disableDevice();
 signals:
     void newDeviceState(GamepadState);
